@@ -1,0 +1,119 @@
+/* styles/global.css */
+
+:root {
+  /* Pas besoin de redéfinir les variables ici car elles sont dans variables.css */
+}
+
+/* Styles de base */
+html {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+}
+
+header .logo img {
+  height: 5rem; /* Ajustez la hauteur selon vos besoins */
+  max-width: 100%; /* Empêche l'image de dépasser le conteneur */
+  object-fit: contain; /* Assure un bon rendu du logo */
+}
+
+header .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 2rem; /* Assurez une taille raisonnable pour le conteneur */
+}
+
+/* Classes utilitaires pour les thèmes */
+.light {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+main {
+  padding-top: 4rem; /* Ajustez cette valeur en fonction de la hauteur de votre header */
+}
+
+/* Classes utilitaires pour les couleurs */
+.text-primary {
+  color: var(--color-primary-600);
+}
+
+.text-secondary {
+  color: var(--color-secondary-600);
+}
+
+.text-success {
+  color: var(--color-success-600);
+}
+
+.text-error {
+  color: var(--color-error-600);
+}
+
+.text-warning {
+  color: var(--color-warning-600);
+}
+
+/* Classes pour les backgrounds */
+.bg-primary {
+  background-color: var(--color-primary-600);
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary-600);
+}
+
+.bg-success {
+  background-color: var(--color-success-600);
+}
+
+.bg-error {
+  background-color: var(--color-error-600);
+}
+
+.bg-warning {
+  background-color: var(--color-warning-600);
+}
+
+/* Classes pour les borders */
+.border-primary {
+  border-color: var(--color-primary-600);
+}
+
+.border-secondary {
+  border-color: var(--color-secondary-600);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+/* Transitions pour les changements de thème */
+* {
+  transition: background-color var(--transition-normal) var(--transition-timing),
+    color var(--transition-normal) var(--transition-timing),
+    border-color var(--transition-normal) var(--transition-timing);
+}
+
+/* Media queries */
+@media (max-width: var(--breakpoint-sm)) {
+  html {
+    font-size: var(--font-size-sm);
+  }
+}
