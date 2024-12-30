@@ -1,26 +1,18 @@
-# Base image
 FROM node:19-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Installer avec --legacy-peer-deps pour résoudre le conflit
+RUN npm install --legacy-peer-deps
 
-# Copy project files
 COPY . .
 
-# Build app
 RUN npm run build
 
-# Install serve
 RUN npm install -g serve
 
-# Expose port
-EXPOSE 3000
+EXPOSE 3002
 
-# Start server
-CMD ["serve", "-s", "build", "-l", "3000"]
+CMD ["serve", "-s", "build", "-l", "3002"]
