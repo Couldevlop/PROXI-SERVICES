@@ -92,7 +92,7 @@ const Hero = () => {
                     <p className="text-xl md:text-2xl text-white mb-8">
                       {slide.subtitle}
                     </p>
-                    <motion.button
+                    {/* <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="px-8 py-3 bg-blue-600 text-white rounded-lg 
@@ -100,7 +100,7 @@ const Hero = () => {
                                text-lg font-semibold"
                     >
                       Nos Services
-                    </motion.button>
+                    </motion.button> */}
                   </motion.div>
                 </div>
               </div>

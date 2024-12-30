@@ -20,7 +20,7 @@ const Header = () => {
       ],
     }, */
     { title: "À Propos", path: "/about" },
-    { title: "Blog", path: "/blog" },
+    // { title: "Blog", path: "/blog" },
     { title: "Contact", path: "/contact" },
   ];
 
