@@ -119,6 +119,7 @@ export default function Contact() {
             allowFullScreen=""
             loading="lazy"
             className="w-full"
+            title="Localisation de Proxi-services sur la carte"
           ></iframe>
         </div>
       </div>
