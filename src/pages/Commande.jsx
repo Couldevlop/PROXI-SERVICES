@@ -13,7 +13,7 @@ const Commande = () => {
       "Spécialisé",
       "Commercial",
     ],
-    Pressing: [],
+    Pressing: ["Habits"],
   };
 
   const openPopup = (menuType) => {
@@ -28,7 +28,6 @@ const Commande = () => {
     <div className="flex flex-col lg:flex-row h-screen">
       {/* Partie gauche : Menu */}
       <div className="bg-blue-600 text-white w-full lg:w-1/4 p-6 mt-20">
-        {/* <h2 className="text-2xl font-bold mb-4">Services</h2> */}
         <ul className="space-y-4">
           {Object.keys(menus).map((menu) => (
             <li
@@ -139,43 +138,40 @@ const Commande = () => {
                       className="mt-1 block w-full border-gray-300 rounded-lg shadow-sm"
                     />
                   </div>
-                </div>
-                {(popupData === "Intérieur" || popupData === "Commercial") && (
-                  <>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700">
-                        Nombre de pièces
-                      </label>
-                      <select className="mt-1 block w-full border-gray-300 rounded-lg shadow-sm">
-                        <option value="">Sélectionner</option>
-                        <option>1 pièce</option>
-                        <option>2 pièces</option>
-                        <option>3 pièces</option>
-                        <option>4 pièces</option>
-                        <option>5 pièces</option>
-                      </select>
-                    </div>
-                    {popupData === "Commercial" && (
+                  {popupData === "Habits" && (
+                    <>
                       <div>
                         <label className="block text-sm font-medium text-gray-700">
-                          Superficie (m²)
+                          Type d'habits
                         </label>
-                        <input
-                          type="number"
+                        <select className="mt-1 block w-full border-gray-300 rounded-lg shadow-sm">
+                          <option value="">Sélectionner</option>
+                          <option>Simple</option>
+                          <option>Costume</option>
+                          <option>Spéciales</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700">
+                          Description
+                        </label>
+                        <textarea
+                          maxLength={2000}
                           className="mt-1 block w-full border-gray-300 rounded-lg shadow-sm"
                         />
                       </div>
-                    )}
-                  </>
-                )}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Commentaire
-                  </label>
-                  <textarea
-                    maxLength={1500}
-                    className="mt-1 block w-full border-gray-300 rounded-lg shadow-sm"
-                  />
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700">
+                          Quantité
+                        </label>
+                        <input
+                          type="number"
+                          min="1"
+                          className="mt-1 block w-full border-gray-300 rounded-lg shadow-sm"
+                        />
+                      </div>
+                    </>
+                  )}
                 </div>
                 <div className="flex justify-end space-x-4">
                   <button
