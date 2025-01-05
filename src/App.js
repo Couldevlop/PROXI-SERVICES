@@ -1,4 +1,3 @@
-// App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";
@@ -8,9 +7,10 @@ import Services from "./pages/Services";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import Commande from "./pages/Commande";
+import AdminRoutes from "./pages/Admin/AdminRoutes"; // Import des routes Admin
 import { ThemeProvider } from "./context/ThemeContext";
 import "./styles/global.css";
-import Commande from "./pages/Commande";
 
 function App() {
   return (
@@ -27,6 +27,8 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/commande" element={<Commande />} />
             </Routes>
+            {/* Ajout des routes d'administration */}
+            <AdminRoutes />
           </main>
           <Footer />
         </div>
