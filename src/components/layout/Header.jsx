@@ -140,7 +140,7 @@ const Header = () => {
                 className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 
                            transition-colors duration-300"
               >
-                Nous Soliciter
+                Commander
               </button>
             </Link>
           </nav>
@@ -200,12 +200,6 @@ const Header = () => {
                     )}
                   </div>
                 ))}
-                <button
-                  className="w-full px-6 py-2 bg-blue-600 text-white rounded-lg 
-                               hover:bg-blue-700 transition-colors duration-300"
-                >
-                  Devis Gratuit
-                </button>
               </nav>
             </div>
           </motion.div>
