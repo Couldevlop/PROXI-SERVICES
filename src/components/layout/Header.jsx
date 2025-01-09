@@ -10,17 +10,7 @@ const Header = () => {
 
   const navigationItems = [
     { title: "Accueil", path: "/" },
-    /* {
-      title: "Services",
-      path: "/services",
-      subItems: [
-        { title: "Nettoyage Résidentiel", path: "/services/residential" },
-        { title: "Nettoyage Commercial", path: "/services/commercial" },
-        { title: "Nettoyage Industriel", path: "/services/industrial" },
-      ],
-    }, */
     { title: "À Propos", path: "/about" },
-    // { title: "Blog", path: "/blog" },
     { title: "Contact", path: "/contact" },
   ];
 
@@ -33,7 +23,11 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const [hoveredItem, setHoveredItem] = useState(null);
+  // Vérification des pages où le menu doit être masqué
+  const hideMenu =
+    location.pathname === "/commande" ||
+    location.pathname.startsWith("/login") ||
+    location.pathname.startsWith("/gerant");
 
   return (
     <header
@@ -68,143 +62,147 @@ const Header = () => {
           </div>
         </div>
       </div>
-
-      {/* Main Header */}
+      {/* Logo Section */}
       <div
         className={`container mx-auto px-4 py-4 ${
           isScrolled ? "py-2" : "py-4"
         }`}
       >
-        <div className="flex justify-between items-center mr-4">
+        <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="flex items-center justify-center">
+          <Link to="/" className="flex items-center">
             <img
               src="logo.svg"
               alt="Logo"
-              className="h-2 w-auto" // Augmentez la hauteur ici
+              className="h-8 w-auto"
               style={{
                 maxWidth: "27%",
                 maxHeight: "12%",
                 height: "auto",
-                marginLeft: "-70%",
                 marginTop: "-2%",
               }}
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {navigationItems.map((item) => (
-              <div
-                key={item.title}
-                className="relative"
-                onMouseEnter={() => setHoveredItem(item.title)}
-                onMouseLeave={() => setHoveredItem(null)}
-              >
-                <Link
-                  to={item.path}
-                  className={`flex items-center space-x-1 text-gray-700 hover:text-blue-600 
-                           ${
-                             location.pathname === item.path
-                               ? "text-blue-600"
-                               : ""
-                           }`}
-                >
-                  <span>{item.title}</span>
-                  {item.subItems && <ChevronDown className="w-4 h-4" />}
-                </Link>
-
-                {/* Dropdown Menu */}
-                {item.subItems && hoveredItem === item.title && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full left-0 w-64 bg-white shadow-lg rounded-lg py-2 mt-2"
+          {/* Ne pas afficher le menu si on est sur les pages spécifiées */}
+          {!hideMenu && (
+            <>
+              {/* Desktop Navigation */}
+              <nav className="hidden lg:flex items-center space-x-8">
+                {navigationItems.map((item) => (
+                  <div
+                    key={item.title}
+                    className="relative"
+                    onMouseEnter={() => setIsMenuOpen(item.title)}
+                    onMouseLeave={() => setIsMenuOpen(null)}
                   >
-                    {item.subItems.map((subItem) => (
-                      <Link
-                        key={subItem.title}
-                        to={subItem.path}
-                        className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                    <Link
+                      to={item.path}
+                      className={`flex items-center space-x-1 text-gray-700 hover:text-blue-600 
+                          ${
+                            location.pathname === item.path
+                              ? "text-blue-600"
+                              : ""
+                          }`}
+                    >
+                      <span>{item.title}</span>
+                      {item.subItems && <ChevronDown className="w-4 h-4" />}
+                    </Link>
+                    {/* Dropdown Menu */}
+                    {item.subItems && isMenuOpen === item.title && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute top-full left-0 w-64 bg-white shadow-lg rounded-lg py-2 mt-2"
                       >
-                        {subItem.title}
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </div>
-            ))}
-            <Link to="/commande">
-              <button
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 
-                           transition-colors duration-300"
-              >
-                Commander
-              </button>
-            </Link>
-          </nav>
+                        {item.subItems.map((subItem) => (
+                          <Link
+                            key={subItem.title}
+                            to={subItem.path}
+                            className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                          >
+                            {subItem.title}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </div>
+                ))}
+                <Link to="/commande">
+                  <button
+                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 
+                          transition-colors duration-300"
+                  >
+                    Commander
+                  </button>
+                </Link>
+              </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden text-gray-700"
-          >
-            {isMenuOpen ? (
-              <X className="w-6 h-6" />
-            ) : (
-              <Menu className="w-6 h-6" />
-            )}
-          </button>
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="lg:hidden text-gray-700"
+              >
+                {isMenuOpen ? (
+                  <X className="w-6 h-6" />
+                ) : (
+                  <Menu className="w-6 h-6" />
+                )}
+              </button>
+            </>
+          )}
         </div>
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white border-t"
-          >
-            <div className="container mx-auto px-4 py-4">
-              <nav className="flex flex-col space-y-4">
-                {navigationItems.map((item) => (
-                  <div key={item.title}>
-                    <Link
-                      to={item.path}
-                      onClick={() => setIsMenuOpen(false)}
-                      className={`block text-gray-700 hover:text-blue-600 
+      {!hideMenu && (
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden bg-white border-t"
+            >
+              <div className="container mx-auto px-4 py-4">
+                <nav className="flex flex-col space-y-4">
+                  {navigationItems.map((item) => (
+                    <div key={item.title}>
+                      <Link
+                        to={item.path}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={`block text-gray-700 hover:text-blue-600 
                               ${
                                 location.pathname === item.path
                                   ? "text-blue-600"
                                   : ""
                               }`}
-                    >
-                      {item.title}
-                    </Link>
-                    {item.subItems && (
-                      <div className="pl-4 mt-2 space-y-2">
-                        {item.subItems.map((subItem) => (
-                          <Link
-                            key={subItem.title}
-                            to={subItem.path}
-                            onClick={() => setIsMenuOpen(false)}
-                            className="block text-gray-600 hover:text-blue-600"
-                          >
-                            {subItem.title}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </nav>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                      >
+                        {item.title}
+                      </Link>
+                      {item.subItems && (
+                        <div className="pl-4 mt-2 space-y-2">
+                          {item.subItems.map((subItem) => (
+                            <Link
+                              key={subItem.title}
+                              to={subItem.path}
+                              onClick={() => setIsMenuOpen(false)}
+                              className="block text-gray-600 hover:text-blue-600"
+                            >
+                              {subItem.title}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </nav>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
     </header>
   );
 };

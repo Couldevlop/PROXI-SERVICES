@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Home from "./pages/Home";
@@ -11,11 +11,13 @@ import Commande from "./pages/Commande";
 import AdminRoutes from "./pages/Admin/AdminRoutes"; // Import des routes Admin
 import { ThemeProvider } from "./context/ThemeContext";
 import "./styles/global.css";
+import GerantRoutes from "./pages/Gerant/GerantRoutes";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
     <ThemeProvider>
-      <Router>
+      <AuthProvider>
         <div className="app">
           <Header />
           <main>
@@ -29,10 +31,11 @@ function App() {
             </Routes>
             {/* Ajout des routes d'administration */}
             <AdminRoutes />
+            <GerantRoutes />
           </main>
           <Footer />
         </div>
-      </Router>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

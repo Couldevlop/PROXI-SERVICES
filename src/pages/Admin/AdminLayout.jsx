@@ -22,10 +22,10 @@ function AdminLayout() {
 
   // Déterminer le menu actif et ses sous-menus
   const currentPath = location.pathname;
-  const isAdminPath = currentPath.includes("/admin/administration");
-  const currentSubMenu = isAdminPath
+  /*const isAdminPath = currentPath.includes("/admin/administration");
+ const currentSubMenu = isAdminPath
     ? menus[2].subMenus.find((sub) => currentPath.includes(sub.path))
-    : null;
+    : null;*/
 
   const isMenuActive = (path) => {
     if (path === "/admin/administration") {
