@@ -34,7 +34,7 @@ export default function About() {
   ];
 
   return (
-    <div className="about">
+    <div className="about mt-16">
       <h1>À propos de Proxi Services</h1>
       <p>
         Proxi Services est votre partenaire de confiance pour tous vos besoins
