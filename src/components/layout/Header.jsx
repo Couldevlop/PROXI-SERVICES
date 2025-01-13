@@ -37,7 +37,7 @@ const Header = () => {
       }`}
     >
       {/* Top Bar */}
-      <div className="hidden lg:block bg-blue-600 text-white">
+      <div className="hidden lg:block bg-blue-600 text-white h-9">
         <div className="container mx-auto px-4 py-2">
           <div className="flex justify-between items-center">
             <div className="flex space-x-6">
@@ -45,18 +45,16 @@ const Header = () => {
                 href="tel:+33123456789"
                 className="flex items-center space-x-2 hover:text-blue-200"
               >
-                <span>+225 07 14 24 45 14</span>
+                {<span></span>}
               </a>
               <a
                 href="mailto:info@proxiservice.com"
                 className="flex items-center space-x-2 hover:text-blue-200"
               >
-                <span>info@proxiservices.com</span>
+                {<span></span>}
               </a>
             </div>
-            <div className="flex items-center space-x-2">
-              <span>123 Rue du Nettoyage, BP 1078 Abidjan 01</span>
-            </div>
+            <div className="flex items-center space-x-2">{<span></span>}</div>
           </div>
         </div>
       </div>
